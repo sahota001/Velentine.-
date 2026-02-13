@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Gagan g 🫀✨</title>
+
+<style>
+body {
+  margin: 0;
+  font-family: 'Comic Sans MS', cursive;
+  background: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  overflow: hidden;
+  transition: background 1.5s ease;
+}
+
+.container {
+  text-align: center;
+}
+
+h1 {
+  margin-bottom: 20px;
+}
+
+#candle {
+  cursor: pointer;
+}
+
+#flame {
+  transition: opacity 0.5s ease;
+}
+
+.hidden {
+  opacity: 0;
+}
+
+#candles {
+  display: none;
+  position: absolute;
+  bottom: 40px;
+  width: 100%;
+  text-align: center;
+}
+
+.dot {
+  width: 12px;
+  height: 12px;
+  background: yellow;
+  border-radius: 50%;
+  display: inline-block;
+  margin: 6px;
+  opacity: 0;
+  animation: show 0.5s forwards;
+}
+
+@keyframes show {
+  to { opacity: 1; }
+}
+
+#message {
+  display: none;
+  color: white;
+  margin-top: 20px;
+  animation: fadeIn 1.5s ease forwards;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.9); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+.confetti {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  background: pink;
+  animation: fall 3s linear infinite;
+}
+
+@keyframes fall {
+  from { top: -10px; opacity: 1; }
+  to { top: 100vh; opacity: 0; }
+}
+</style>
+</head>
+
+<body>
+<div class="container">
+  <h1>Blow the Candle 🕯️</h1>
+
+  <svg id="candle" width="100" height="200" viewBox="0 0 100 200">
+    <rect x="40" y="80" width="20" height="80" fill="#eee"/>
+    <path id="flame" d="M50 20 C65 45, 55 60, 50 70 C45 60, 35 45, 50 20"
+          fill="orange"/>
+  </svg>
+
+  <div id="message">
+    <h2>Happy Valentine’s Day 💖🫶🏻</h2>
+    <h1>Gagan g 🫀✨</h1>
+  </div>
+</div>
+
+<div id="candles"></div>
+
+<script>
+const candle = document.getElementById("candle");
+const flame = document.getElementById("flame");
+const candles = document.getElementById("candles");
+const message = document.getElementById("message");
+
+candle.addEventListener("click", () => {
+  flame.classList.add("hidden");
+
+  setTimeout(() => {
+    document.body.style.background = "#0b1a33";
+    candles.style.display = "block";
+
+    for (let i = 0; i < 12; i++) {
+      const dot = document.createElement("div");
+      dot.className = "dot";
+      dot.style.animationDelay = `${i * 0.2}s`;
+      candles.appendChild(dot);
+    }
+
+    message.style.display = "block";
+    createConfetti();
+  }, 600);
+});
+
+function createConfetti() {
+  for (let i = 0; i < 30; i++) {
+    const conf = document.createElement("div");
+    conf.className = "confetti";
+    conf.style.left = Math.random() * 100 + "vw";
+    conf.style.animationDuration = (2 + Math.random() * 2) + "s";
+    document.body.appendChild(conf);
+
+    setTimeout(() => conf.remove(), 4000);
+  }
+}
+</script>
+</body>
+</html>
